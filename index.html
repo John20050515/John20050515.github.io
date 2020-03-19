@@ -226,30 +226,78 @@
 
 <style type="text/css">
 
-.glyphicon-chevron-left:before{
-  content: "《"
-}
-.glyphicon-chevron-right:before{
-  content: "》"
+.glyphicon-chevron-left{
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    line-height: 36px;
+    text-align: center;
+    opacity: .5;
+    vertical-align: middle;
+    background: rgba(0,0,0);
+    left: 5px;
+    top: 45%;
+    color: #fff;
+    font-family: "宋体";
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    display: none;
 }
 
+.glyphicon-chevron-left:before{
+  content: "<";
+}
+.glyphicon-chevron-right{
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    line-height: 36px;
+    text-align: center;
+    opacity: .5;
+    vertical-align: middle;
+    background: rgba(0,0,0);
+    top: 45%;
+    right: 5px;
+    color: #fff;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    font-family: "宋体";
+    display: none;
+}
+.glyphicon-chevron-right:before{
+  content: ">";
+}
+
+/*设置鼠标移入显示左右切换按钮*/
+#myCarousel:hover .glyphicon-chevron-left,
+#myCarousel:hover .glyphicon-chevron-right{
+  display: block;
+}
+
+/*设置手机端不展示轮播图*/
 @media (max-width: 767px){
   .rights{
     display: none;
   }
   .carousel{
-    width: 100% !important;
-    height: 100% !important;
+    display: none;
   }
   .slide{
     width: 100% !important;
     height: 100% !important;
   }
-
+  .tag-cloud{
+    display: none;
+  }
 }
 
 .carousel{
-  width: 100%;
+  width: 65%;
   height: 100%;
   position: relative;
 }
@@ -259,6 +307,7 @@
   overflow: hidden;
   width: 100%;
 }
+
 .carousel-inner > .item {
   display: none;
   position: relative;
@@ -338,12 +387,6 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 15%;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  font-size: 20px;
-  color: #fff;
-  text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(0, 0, 0, 0);
 }
@@ -356,7 +399,7 @@
 }
 .carousel-control.right {
   left: auto;
-  right: 0;
+  right: 0px;
   background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
@@ -368,28 +411,17 @@
   outline: 0;
   color: #fff;
   text-decoration: none;
-  opacity: 0.9;
-  filter: alpha(opacity=90);
 }
+
+
 .carousel-control .icon-prev,
-.carousel-control .icon-next,
-.carousel-control .glyphicon-chevron-left,
-.carousel-control .glyphicon-chevron-right {
-  position: absolute;
-  top: 50%;
-  margin-top: -10px;
-  z-index: 5;
-  display: inline-block;
+.carousel-control .glyphicon-chevron-left{
+  left: 9px;
 }
-.carousel-control .icon-prev,
-.carousel-control .glyphicon-chevron-left {
-  left: 50%;
-  margin-left: -10px;
-}
+
 .carousel-control .icon-next,
 .carousel-control .glyphicon-chevron-right {
-  right: 50%;
-  margin-right: -10px;
+  right: 0px;
 }
 .carousel-control .icon-prev,
 .carousel-control .icon-next {
@@ -398,15 +430,11 @@
   line-height: 1;
   font-family: serif;
 }
-.carousel-control .icon-prev:before {
-  content: '\2039';
-}
-.carousel-control .icon-next:before {
-  content: '\203a';
-}
+
 .carousel-indicators {
+  opacity: 0.4;
   position: absolute;
-  bottom: 10px;
+  bottom: 2px;
   left: 50%;
   z-index: 15;
   width: 60%;
@@ -417,20 +445,17 @@
 }
 .carousel-indicators li {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 1px;
+  width: 30px;
+  height: 3px;
+  margin: 5px;
   text-indent: -999px;
-  border: 1px solid #fff;
-  border-radius: 10px;
+  border: 1px solid #bbb;
   cursor: pointer;
-  background-color: #000 \9;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0,0,0,.24);
 }
 .carousel-indicators .active {
-  margin: 0;
-  width: 12px;
-  height: 12px;
+  width: 30px;
+  height: 3px;
   background-color: #fff;
 }
 .carousel-caption {
@@ -450,21 +475,8 @@
 }
 @media screen and (min-width: 768px) {
   .carousel-control .glyphicon-chevron-left,
-  .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-prev,
-  .carousel-control .icon-next {
-    width: 30px;
-    height: 30px;
-    margin-top: -10px;
-    font-size: 30px;
-  }
-  .carousel-control .glyphicon-chevron-left,
   .carousel-control .icon-prev {
     margin-left: -10px;
-  }
-  .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-next {
-    margin-right: -10px;
   }
   .carousel-caption {
     left: 20%;
@@ -472,7 +484,7 @@
     padding-bottom: 30px;
   }
   .carousel-indicators {
-    bottom: 20px;
+    bottom: -14px;
   }
 }
 </style>
@@ -503,11 +515,6 @@
       
 
     
-
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-      
-
-    
     </ol>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner" style="height: 280px; border-radius: 10px; width: 100%;">
@@ -517,7 +524,7 @@
     
         
         <a class="item active" href="https://www.baidu.com" target="_blank" style="height: 100%;">
-          <img src="./source/images/Pixiv1.jpg"   style="width: 100%; height: 100%" >
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584611775991&di=ea1d74f8b3848924c3666907a448af06&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F68%2F61%2F300000839764127060614318218_950.jpg"   style="width: 100%; height: 100%" >
         </a>
         
         
@@ -526,7 +533,7 @@
     
         
           <a class="item" href="https://www.baidu.com" target="_blank" style="height: 100%;">
-            <img src="./source/images/Pixiv13.jpg"  style="width: 100%; height: 100%;" >
+            <img src="Pixiv13.jpg"  style="width: 100%; height: 100%;" >
           </a>
       
 
@@ -543,14 +550,6 @@
         
           <a class="item" href="/" target="_blank" style="height: 100%;">
             <img src=""  style="width: 100%; height: 100%;" >
-          </a>
-      
-
-    
-    
-        
-          <a class="item" href="/messageboard/" target="_blank" style="height: 100%;">
-            <img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/my-blog.png"  style="width: 100%; height: 100%;" >
           </a>
       
 
@@ -569,7 +568,6 @@
     </a>
   </div> 
 </div>
-
 
 
 
@@ -833,8 +831,6 @@
   </div>
 
   
-  
-  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="true"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
